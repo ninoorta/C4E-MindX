@@ -1,0 +1,119 @@
+#myBtn {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Fixed/sticky position */
+    bottom: 20px;
+    /* Place the button at the bottom of the page */
+    right: 30px;
+    /* Place the button 30px from the right */
+    z-index: 99;
+    /* Make sure it does not overlap */
+    border: none;
+    /* Remove borders */
+    outline: none;
+    /* Remove outline */
+    background-color: red;
+    /* Set a background color */
+    color: white;
+    /* Text color */
+    cursor: pointer;
+    /* Add a mouse pointer on hover */
+    padding: 15px;
+    /* Some padding */
+    border-radius: 10px;
+    /* Rounded corners */
+    font-size: 18px;
+    /* Increase font size */
+}
+
+#myBtn:hover {
+    background-color: #555;
+    /* Add a dark-grey background on hover */
+}
+
+#txtvideo {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+#txt-search-inner {
+    text-transform: capitalize;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.button {
+    width: 10%;
+}
+
+div.videothumbnail {
+    margin: 5px;
+    width: 360px;
+    height: 320px;
+    display: inline-block;
+    position: relative;
+}
+
+div.videothumbnail:hover {
+    transform: scale(1.04);
+}
+
+div.videothumbnail img {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    border: 0;
+}
+
+span.desc {
+    text-align: center;
+    margin: auto;
+    display: table;
+    color: black;
+}
+
+.vungChon:hover {
+    cursor: pointer;
+}
+
+
+/* css cua modal  */
+
+body {
+    margin: 2rem;
+}
+
+.modal-dialog {
+    max-width: 800px;
+    margin: 30px auto;
+}
+
+.modal-body {
+    position: relative;
+    padding: 0px;
+}
+
+body{
+    background-image: url('https://images.squarespace-cdn.com/content/v1/57210e28d51cd4ec63a281b6/1507314588570-1NMVKAH4TH9TDNTK0YSU/ke17ZwdGBToddI8pDm48kApm4bZ6Mn3TiUWou3kA3bp7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UWZaykogqWzieOupsqeSuBYug-y5Ut2InYZT1FrJD3yL-rj95DA1mjJIBxXFGHkuyQ/pooling+moonlight.jpg?format=1000w');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+}
+
+.desc{
+    color: blanchedalmond !important;
+}
+
+.close {
+    position: absolute;
+    right: -30px;
+    top: 0;
+    z-index: 999;
+    font-size: 5rem;
+    font-weight: normal;
+    color: white;
+    opacity: 1;
+}
