@@ -63,6 +63,7 @@ td, th {
 
 .input-group{
     padding-bottom: 10px;
+    width:50%;
 }
 
 .video-id,.thumbnail,.vid-ids,.anh-vid{
