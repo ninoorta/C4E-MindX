@@ -87,7 +87,7 @@ let artist = [
 
 // Đẩy dữ liệu lên localstorage
 localStorage.clear();
-localStorage.setItem('artist',JSON.stringify(artist));
+localStorage.setItem('artist', JSON.stringify(artist));
 // Dùng để test
 // localStorage.clear();
 
@@ -95,40 +95,37 @@ localStorage.setItem('artist',JSON.stringify(artist));
 // for (let i = 0; i < artist.length; i++) {
 //     localStorage.setItem(`artist${i + 1}`, JSON.stringify(artist[i]));
 // }
-
+let API = ['AIzaSyA0EXoz8yj9TA8GzYy_60N8umR-c2I6PI4', 'AIzaSyA2CtshEJSj7JJBOQfV9vB1RlsXhT_lXpc',
+     'AIzaSyDIADyJhBWUko8a2-BdK_Ihmpslc7DpUnM','AIzaSyBesyg5lnTECss_yHw5HrrpcqDi_rexyRI']
 
 //Khởi tạo mảng để chứa dữ liệu lấy từ local storage
-var a = JSON.parse(localStorage.getItem('artist')) ;
+var a = JSON.parse(localStorage.getItem('artist'));
 console.log(a);
 
 function getData() {
-
-    // for (let i = 1; i <= localStorage.length; i++) {
-    //     a.push(JSON.parse(localStorage.getItem(`artist${i}`)));
-    // }
+    let j = Math.round(Math.random() * 3)
 
     for (let i = 0; i < a.length; i++) {
         let xhr = new XMLHttpRequest();
-        let keyword = '20 bài hát trending của' + a[i].name + ' Official Music Video';
-        // console.log(a[i].name)
+        let keyword = '20 bài hát hay nhất của' + a[i].name + ' Official Music Video';
 
         let url = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" +
-            keyword + "&type=video&key=AIzaSyCH5dyd-hWLc72rIxLtnLCOI_7k0PsaDac"
+            keyword + "&type=video&key=" + API[j]
+        console.log(API[j])
         // AIzaSyA0EXoz8yj9TA8GzYy_60N8umR-c2I6PI4
         // AIzaSyCH5dyd-hWLc72rIxLtnLCOI_7k0PsaDac
         // AIzaSyA-Y_AEsinRIRFF73D76sLu4mid4xgqshM
+        // AIzaSyDIADyJhBWUko8a2-BdK_Ihmpslc7DpUnM
 
         xhr.open("GET", url);
         xhr.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
                 getInfor(this.responseText, a[i]);
-                // localStorage.setItem(`artist`,JSON.stringify(a));
-                // localStorage.setItem(`artist${i + 1}`, JSON.stringify(a[i]))
+
             }
         }
         xhr.send();
     }
-    console.log(a);
 
 }
 
@@ -137,12 +134,12 @@ function getDataCurrentArtist(currentArtist) {
     let xhr = new XMLHttpRequest();
     let keyword = '20 bài hát trending của' + currentArtist.name + ' Official Music Video';
     let url = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" +
-        keyword + "&type=video&key=AIzaSyCH5dyd-hWLc72rIxLtnLCOI_7k0PsaDac"
+        keyword + "&type=video&key=AIzaSyDIADyJhBWUko8a2-BdK_Ihmpslc7DpUnM"
     xhr.open("GET", url);
     xhr.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             getInfor(this.responseText, currentArtist);
-            localStorage.setItem('artist',JSON.stringify(a));
+            localStorage.setItem('artist', JSON.stringify(a));
         }
     }
     xhr.send();
@@ -169,7 +166,7 @@ function displayInfor() {
             '</td><td>' + a[i].image +
             '</td><td>' + a[i].anhBackGround +
             '</td><td class = "vid-ids">' + a[i].videoId +
-            '</td><td class = "anh-vid">' + 
+            '</td><td class = "anh-vid">' +
             a[i].thumbnail +
             '<td><button class="btn btn-primary" data-artist-name = "' + a[i].name + '" onclick="themTableSua(event)"> Sửa </button>' +
             '<button class="btn btn-info" data-artist-name = "' + a[i].name + '" onclick = "xoaInfor(event)"> Xóa </button>' +
@@ -260,16 +257,16 @@ function themNgheSi() {
     })
 
     getData();
-    localStorage.setItem(`artist`,JSON.stringify(a));
+    localStorage.setItem(`artist`, JSON.stringify(a));
 
     // Xóa dữ liệu trong thanh input sau khi lưu xong
     document.getElementById('name').value = '';
-    document.getElementById('real-name').value= '';
-    document.getElementById('birthday').value= '';
-    document.getElementById('nation').value= '';
-    document.getElementById('portrait').value= '';
-    document.getElementById('background').value= '';
-    document.getElementById('infor').value= '';
+    document.getElementById('real-name').value = '';
+    document.getElementById('birthday').value = '';
+    document.getElementById('nation').value = '';
+    document.getElementById('portrait').value = '';
+    document.getElementById('background').value = '';
+    document.getElementById('infor').value = '';
 
     // for (let i = 0; i < a.length; i++) {
     //     localStorage.setItem(`artist${i + 1}`, JSON.stringify(a[i]))
@@ -282,7 +279,7 @@ function xoaInfor(e) {
     for (let i = 0; i < a.length; i++) {
         if (e.target.dataset.artistName === a[i].name) {
             a.splice(i, 1);
-            localStorage.setItem('artist',JSON.stringify(a));
+            localStorage.setItem('artist', JSON.stringify(a));
             // localStorage.removeItem(`artist${i + 1}`);
         }
     }
@@ -292,7 +289,7 @@ function xoaInfor(e) {
 }
 
 function bangChiTiet(e) {
- 
+
     // Get the modal
     // console.log(artist)
     console.log(a)
@@ -324,7 +321,7 @@ function bangChiTiet(e) {
 
             let listAnhVideo = a[i].thumbnail;
             for (let k = 0; k < listAnhVideo.length; k++) {
-                document.getElementById('anh-video' + k).innerHTML += '<td><img class="anh-thumbnail"  src=" ' + listAnhVideo[k] + '"</td>' ;
+                document.getElementById('anh-video' + k).innerHTML += '<td><img class="anh-thumbnail"  src=" ' + listAnhVideo[k] + '"</td>';
                 console.log(listAnhVideo[k])
             }
         }
@@ -372,24 +369,24 @@ function themTable() {
 
 ///////////////////////////////////////////////////////
 
-function themTableSua(e){
-     // // Get the modal
-     let modal3 = document.getElementById("myModal3");
-     modal3.style.display = "block";
- 
-     // Get the <span> element that closes the modal
-     let span3 = document.getElementsByClassName("close3")[0];
-     let submit = document.getElementById("submit-edit");
- 
-     // When the user clicks on <span> (x), close the modal
-     span3.onclick = function () {
-         modal3.style.display = "none";
-     }
- 
-     console.log(e.target.dataset.artistName);
+function themTableSua(e) {
+    // // Get the modal
+    let modal3 = document.getElementById("myModal3");
+    modal3.style.display = "block";
 
-     for(let i = 0; i < a.length; i ++){
-        if(e.target.dataset.artistName === a[i].name){
+    // Get the <span> element that closes the modal
+    let span3 = document.getElementsByClassName("close3")[0];
+    let submit = document.getElementById("submit-edit");
+
+    // When the user clicks on <span> (x), close the modal
+    span3.onclick = function () {
+        modal3.style.display = "none";
+    }
+
+    console.log(e.target.dataset.artistName);
+
+    for (let i = 0; i < a.length; i++) {
+        if (e.target.dataset.artistName === a[i].name) {
             document.getElementById('name3').value = a[i].name;
             document.getElementById('real-name3').value = a[i].tenThat;
             document.getElementById('birthday3').value = a[i].sinhNhat;
@@ -397,38 +394,38 @@ function themTableSua(e){
             document.getElementById('portrait3').value = a[i].image;
             document.getElementById('background3').value = a[i].anhBackGround;
             document.getElementById('infor3').value = a[i].inFor;
-            localStorage.setItem('edit-Artist',i);
+            localStorage.setItem('edit-Artist', i);
         }
     }
 
 
-     submit.onclick = function () {
-         modal3.style.display = "none";
-         tableSuaInfor();
-     }
- 
-     // When the user clicks anywhere outside of the modal, close it
-     window.onclick = function (event) {
-         if (event.target == modal3) {
-             modal3.style.display = "none";
-         }
-     }
+    submit.onclick = function () {
+        modal3.style.display = "none";
+        tableSuaInfor();
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal3) {
+            modal3.style.display = "none";
+        }
+    }
 
 }
 
-function tableSuaInfor(){
+function tableSuaInfor() {
     alert('Sửa thành công!');
     let b = localStorage.getItem('edit-Artist');
-    a[b].name = document.getElementById('name3').value ;
+    a[b].name = document.getElementById('name3').value;
     a[b].tenThat = document.getElementById('real-name3').value;
     a[b].sinhNhat = document.getElementById('birthday3').value;
-    a[b].nation = document.getElementById('nation3').value ;
+    a[b].nation = document.getElementById('nation3').value;
     a[b].image = document.getElementById('portrait3').value;
     a[b].anhBackGround = document.getElementById('background3').value;
     a[b].inFor = document.getElementById('infor3').value;
     a[b].thumbnail = [];
     a[b].videoId = [];
 
-    localStorage.setItem(`artist`,JSON.stringify(a));
+    localStorage.setItem(`artist`, JSON.stringify(a));
     getData();
 }

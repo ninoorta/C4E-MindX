@@ -45,7 +45,12 @@
 }
 
 .button {
-    width: 10%;
+    width: 70px;
+    height: 30px;
+}
+
+.btn-info{
+    height: 30px;
 }
 
 div.videothumbnail {

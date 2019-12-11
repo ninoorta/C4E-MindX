@@ -1,5 +1,4 @@
 //Play youtube in modal style
-
 $(document).ready(function() {
 
     // Gets the video src from the data-id on each img tag
@@ -33,7 +32,7 @@ $(document).ready(function() {
 function getVideo() {
     let xhr = new XMLHttpRequest();
     let keyword = document.getElementById("search-box").value;
-    let url = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=" + keyword + "&type=video&key=AIzaSyC25wlU4AKd7qLgIVmugro1ZWZYbjUm4ZI&fbclid=IwAR1qnautC1LOm8tNUtC1peKRzckeC9xnObcmMlR0Dj8X_xFdEfw87MzBbKo";
+    let url = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=" + keyword + "&type=video&key=AIzaSyBesyg5lnTECss_yHw5HrrpcqDi_rexyRI";
     xhr.open("GET", url);
     xhr.onreadystatechange = function(result) {
         if (this.readyState === 4 && this.status === 200) {
@@ -49,10 +48,8 @@ function getVideo() {
                 image = object.items[j].snippet.thumbnails.high.url;
                 total += `<div class="videothumbnail">
                             <span data-toggle="tooltip" data-placement="top" title="Click to listen on youtube">
-
                                 <img class="thumbnail vungChon" data-toggle="modal" data-target="#myModal" src="${image}" alt="${name}" data-id="${id}">
                                 <span class="desc vungChon" target="_top" data-toggle="modal" data-target="#myModal" data-id="${id}">${name}</span>
-
                             </span>
                         </div>`;
             }
@@ -89,7 +86,8 @@ function goBack() {
 
 if (typeof localStorage.getItem("keyWord" != "undefined")) {
     $(window).on('load', function() {
-        document.getElementById("search-box").value = localStorage.getItem("keyWord");
+        document.getElementById("search-box").value = JSON.parse(localStorage.getItem("keyWord"));
+        console.log(document.getElementById("search-box").value)
         getVideo();
     })
 }
