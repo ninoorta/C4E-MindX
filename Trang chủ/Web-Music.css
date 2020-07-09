@@ -3,6 +3,7 @@
 }
 
 
+
 /* Add a black background color to the top navigation bar */
 
 .topnav {
@@ -155,7 +156,7 @@ h4,
 h5,
 h6 {
     font-weight: bold;
-    color: blanchedalmond;
+    color: #ff9900;
 }
 
 .vungChon:hover {
@@ -302,9 +303,6 @@ h6 {
     margin: 0px 0px 0px;
 }
 
-@media (max-width: 600px),.w3-hide-small {
-    display: block;
-}
 
 .w3-container,.w3-margin-bottom > p  {
     color:  black;
